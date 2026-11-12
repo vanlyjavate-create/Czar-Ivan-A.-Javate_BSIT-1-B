@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <div id="header">
+        <h1>Czar Ivan A. Javate</h1>
+        <p>BS Information Technology Student</p>
+    </div>
+
+    <!-- Navigation menu -->
+    <div id="menu">
+        <a href="#personal">Personal Information</a>
+        <a href="#education">Educational Background</a>
+        <a href="#skills">Skills</a>
+        <a href="#java">Java Code</a>
+    </div>
+
+    <!-- Personal Information -->
+    <div class="section" id="personal">
+        <h2>Personal Information</h2>
+        <img src="images/profile.jpg" alt="Czar Ivan Javate" width="150">
+        <p><b>Name:</b> Czar Ivan A. Javate</p>
+        <p><b>Age:</b> 18</p>
+        <p><b>Address:</b> Bacayao, Guimba, Nueva Ecija</p>
+        <p><b>Email:</b> vanlyjavate@gmail.com</p>
+        <p><b>Contact Number:</b> 09676138023</p>
+
+        <h3>About Me</h3>
+        <p>
+            Konnichiwa, I'm Czar Ivan Javate, a BSIT student who is passionate
+            about learning new things, especially in technology. I enjoy
+            programming because it allows me to create useful programs, solve
+            problems, and improve my skills. I know I still have a lot to learn,
+            but I'm willing to improve and explore more about programming.
+        </p>
+    </div>
+
+    <!-- Educational Background -->
+    <div class="section" id="education">
+        <h2>Educational Background</h2>
+        <table border="1">
+            <tr>
+                <th>Level</th>
+                <th>School</th>
+                <th>School Year</th>
+            </tr>
+            <tr>
+                <td>College</td>
+                <td>Our Lady of the Sacred Heart College of Guimba, Inc.<br>BS Information Technology</td>
+                <td>2026 - Present</td>
+            </tr>
+            <tr>
+                <td>Senior High School</td>
+                <td>Santo Domingo National Trade School</td>
+                <td>Grade 11: SY 2024-2025<br>Grade 12: SY 2025-2026</td>
+            </tr>
+            <tr>
+                <td>Junior High School</td>
+                <td>Santo Domingo National Trade School</td>
+                <td>Grade 7: SY 2020-2021<br>Grade 8: SY 2021-2022<br>Grade 9: SY 2022-2023<br>Grade 10: SY 2023-2024</td>
+            </tr>
+            <tr>
+                <td>Elementary</td>
+                <td>Curva Elementary School</td>
+                <td>Grade 1: SY 2014-2015<br>Grade 2: SY 2015-2016<br>Grade 3: SY 2016-2017<br>Grade 4: SY 2017-2018<br>Grade 5: SY 2018-2019<br>Grade 6: SY 2019-2020</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Skills -->
+    <div class="section" id="skills">
+        <h2>Skills</h2>
+        <h3>Technical Skills</h3>
+        <ul>
+            <li>Java programming</li>
+            <li>HTML and CSS</li>
+            <li>Arrays, loops, and conditional statements</li>
+            <li>Input validation using Scanner</li>
+        </ul>
+        <h3>Other Skills</h3>
+        <ul>
+            <li>Problem solving</li>
+            <li>Teamwork</li>
+            <li>Willing to learn</li>
+        </ul>
+    </div>
+
+    <!-- Java Code -->
+    <div class="section" id="java">
+        <h2>Java Code</h2>
+        <p>This is my final Performance Task (PeTa) in CC102, a console-based Java program.</p>
+        <h3>Program Title: Daily Air Temperature Comparison</h3>
+        <p>
+            This program asks for the morning and afternoon temperatures for 7 days
+            (from -20 to 60 degrees C) and stores them in arrays. It computes the
+            afternoon-minus-morning difference for each day, counts the days when the
+            afternoon was warmer, and shows the day with the greatest temperature increase.
+        </p>
+        <p>The full file is also in this repository: <a href="TemperatureComparison.java">TemperatureComparison.java</a></p>
+
+        <pre>
+import java.util.Scanner;
+
+public class TemperatureComparison {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        double[] morning = new double[7];
+        double[] afternoon = new double[7];
+        double[] difference = new double[7];
+
+        // Input with validation
+        for (int i = 0; i &lt; 7; i++) {
+
+            // Morning temperature
+            boolean valid = false;
+            while (valid == false) {
+                System.out.print("Enter morning temperature for Day " + i + ": ");
+                if (sc.hasNextDouble()) {
+                    morning[i] = sc.nextDouble();
+                    if (morning[i] &gt;= -20 &amp;&amp; morning[i] &lt;= 60) {
+                        valid = true;
+                    } else {
+                        System.out.println("Invalid! Temperature must be from -20 to 60.");
+                    }
+                } else {
+                    System.out.println("Invalid! Please enter a number.");
+                    sc.next();
+                }
+            }
+
+            // Afternoon temperature
+            valid = false;
+            while (valid == false) {
+                System.out.print("Enter afternoon temperature for Day " + i + ": ");
+                if (sc.hasNextDouble()) {
+                    afternoon[i] = sc.nextDouble();
+                    if (afternoon[i] &gt;= -20 &amp;&amp; afternoon[i] &lt;= 60) {
+                        valid = true;
+                    } else {
+                        System.out.println("Invalid! Temperature must be from -20 to 60.");
+                    }
+                } else {
+                    System.out.println("Invalid! Please enter a number.");
+                    sc.next();
+                }
+            }
+        }
+
+        // Processing
+        int warmerDays = 0;
+        int maxIndex = 0;
+
+        for (int i = 0; i &lt; 7; i++) {
+            difference[i] = afternoon[i] - morning[i];
+
+            if (difference[i] &gt; 0) {
+                warmerDays++;
+            }
+
+            if (difference[i] &gt; difference[maxIndex]) {
+                maxIndex = i;
+            }
+        }
+
+        // Output
+        System.out.println();
+        System.out.println("Day\tMorning\tAfternoon\tDifference");
+        for (int i = 0; i &lt; 7; i++) {
+            System.out.println(i + "\t" + morning[i] + "\t" + afternoon[i] + "\t\t" + difference[i]);
+        }
+
+        System.out.println();
+        System.out.println("Number of days the afternoon was warmer: " + warmerDays);
+        System.out.println("Day with the greatest temperature increase: Day " + maxIndex);
+        System.out.println("Increase: " + difference[maxIndex] + " degrees C");
+
+        sc.close();
+    }
+}
+        </pre>
+    </div>
+
+    <div id="footer">
+        <p>BUILD DREAMS. CODE FUTURES.</p>
+    </div>
+
+</body>
+</html>
